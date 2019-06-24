@@ -1,7 +1,7 @@
 from .app import db
 
 
-class Belly(db.Model):
+class SampleMetadata(db.Model):
     __tablename__ = 'sample_metadata'
 
     sample = db.Column(db.Integer, primary_key=True)
@@ -13,8 +13,8 @@ class Belly(db.Model):
     BBTYPE = db.Column(db.String(2))
     WFREQ = db.Column(db.Float)
     
-
-    __tablename__ = "sample"
+class Sample(db.Model):
+    __tablename__ = "samples"
 
     otu_id = db.Column(db.Integer, primary_key=True)
     otu_label = db.Column(db.String(100))
