@@ -28,11 +28,6 @@ Base = automap_base()
 # reflect the tables
 Base.prepare(db.engine, reflect=True)
 
-# Save references to each table
-Samples_Metadata = Base.classes.sample_metadata
-Samples = Base.classes.samples
-
-
 @app.route("/")
 def index():
     """Return the homepage."""
@@ -42,6 +37,7 @@ def index():
 @app.route("/names")
 def names():
     """Return a list of sample names."""
+    Samples = Base.classes.samples
 
     # Use Pandas to perform the sql query
     stmt = db.session.query(Samples).statement
@@ -54,6 +50,8 @@ def names():
 @app.route("/metadata/<sample>")
 def sample_metadata(sample):
     """Return the MetaData for a given sample."""
+    Samples_Metadata = Base.classes.sample_metadata
+
     sel = [
         Samples_Metadata.sample,
         Samples_Metadata.ETHNICITY,
@@ -83,6 +81,8 @@ def sample_metadata(sample):
 @app.route("/scattersamples/<sample>")
 def scattersamples(sample):
     """Return `otu_ids`, `otu_labels`,and `sample_values`."""
+    Samples = Base.classes.samples
+
     stmt = db.session.query(Samples).statement
     df = pd.read_sql_query(stmt, db.session.bind)
     
@@ -100,6 +100,8 @@ def scattersamples(sample):
 @app.route("/piesamples/<sample>")  
 def piesamples(sample): 
     """Return `otu_ids`, `otu_labels`,and `sample_values`."""
+    Samples = Base.classes.samples
+    
     stmt = db.session.query(Samples).statement
     df = pd.read_sql_query(stmt, db.session.bind)
     
