@@ -18,4 +18,4 @@ class Belly(db.Model):
 
     otu_id = db.Column(db.Integer, primary_key=True)
     otu_label = db.Column(db.String(100))
-    sample = db.Column(db.Integer, foreign_key = True)
+    sample = db.Column(db.Integer)
