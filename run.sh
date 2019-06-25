@@ -1,1 +1,1 @@
-FLASK_APP=belly_button/herokuapp.py
+FLASK_APP=belly_button/app.py flask run
