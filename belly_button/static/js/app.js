@@ -6,10 +6,11 @@ metaurl = "/metadata/"+sample
 
     // Use d3 to select the panel with id of `#sample-metadata`
     var table = d3.select('#sample-metadata');
-
-    // clear the input value
-    d3.select("#sample-metadata") = "";
-
+    // clear the input value and the table
+    table.html('');
+    console.log(table)
+    //table.innerHTML('');
+  
     //loop through each key,value pair to display
       Object.entries(data).forEach(function([key, value]) {
         var row = table.append('tr');
